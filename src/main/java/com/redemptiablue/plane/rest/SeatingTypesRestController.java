@@ -21,13 +21,13 @@ public class SeatingTypesRestController {
 	}
 	
 	@GetMapping("/small_plane_seating")
-	public List<SeatingType> getSmallPlaneSeatingTypes() {
-		return seatingDAO.getSmallPlaneSeatingTypes();
+	public Plane getSmallPlaneSeatingTypes() {
+		return new SmallPlane(seatingDAO.getSmallPlaneSeatingTypes());
 	}
 	
 	@GetMapping("/large_plane_seating")
-	public List<SeatingType> getLargePlaneSeatingTypes() {
-		return seatingDAO.getLargePlaneSeatingTypes();
+	public Plane getLargePlaneSeatingTypes() {
+		return new LargePlane(seatingDAO.getLargePlaneSeatingTypes());
 	}
 
 }

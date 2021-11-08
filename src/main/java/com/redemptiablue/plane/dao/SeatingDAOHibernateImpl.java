@@ -25,19 +25,33 @@ public class SeatingDAOHibernateImpl implements SeatingDAO {
 	@Override
 	@Transactional
 	public List<SeatingType> getSmallPlaneSeatingTypes() {
+		Query<SeatingType> smallSeatingTypes = null;
+		try {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
-		Query<SeatingType> smallSeatingTypes = currentSession.createQuery("From SeatingType s where s.availableOnSmall=1");
+		smallSeatingTypes = currentSession.createQuery("From SeatingType s where s.availableOnSmall=1");
+		
+		} 
+		catch (Exception err) {
+			System.out.println(err);
+		}
 		return smallSeatingTypes.getResultList();
 	}
 
 	@Override
 	public List<SeatingType> getLargePlaneSeatingTypes() {
+		Query<SeatingType> largeSeatingTypes = null;
+	try {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
-		Query<SeatingType> largeSeatingTypes = currentSession.createQuery("From SeatingType");
+		largeSeatingTypes = currentSession.createQuery("From SeatingType");
 		
-		return largeSeatingTypes.getResultList();
+		
+	} 
+	catch (Exception err) {
+		System.out.println(err);
+	}
+	return largeSeatingTypes.getResultList();
 	}
 
 }
